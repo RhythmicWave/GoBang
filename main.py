@@ -1,4 +1,4 @@
-from train import train_on_policy_agent
+from train import train
 from env.go_bang_env import GoBangEnv
 from ppo.ppo_agent import PPOAgent
 import time
@@ -13,7 +13,7 @@ def main():
         env = GoBangEnv(width, height)
         pre_model=None
         agents = [PPOAgent(state_dim, 256, state_dim, is_main=False,pre_model=pre_model), PPOAgent(state_dim, 256, state_dim,lr=7e-5, is_main=True,pre_model=pre_model)]
-        train_on_policy_agent(env, agents, 90000)
+        train(env, agents, 90000)
 
     except KeyboardInterrupt:   # 当用户按下Ctrl+C中断程序时，会抛出KeyboardInterrupt异常
         print('\n程序被中断！')

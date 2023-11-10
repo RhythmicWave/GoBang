@@ -5,7 +5,7 @@ import os
 from model_manager import ModelManager
 from env.go_bang_qeui_data import expand_equi_data
 
-def train_on_policy_agent(env, agents, num_episodes,save_path="checkpoints"):
+def train(env, agents, num_episodes,save_path="checkpoints"):
     return_list = []
     state=env.reset()
     last_model_prob=0.75
