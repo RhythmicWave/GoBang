@@ -35,7 +35,7 @@ class Net(torch.nn.Module):
             torch.nn.ReLU(),
         )
 
-        self.value=torch.nn.Sequential(
+        self.critic=torch.nn.Sequential(
             torch.nn.Linear(hidden_dim, hidden_dim),
             torch.nn.LayerNorm(hidden_dim),
             torch.nn.ReLU(),
@@ -49,11 +49,11 @@ class Net(torch.nn.Module):
     def forward(self,x):
         state_embed=self.get_state_embed(x)
         probs=self.actor(state_embed)
-        value=self.value(state_embed)
+        value=self.critic(state_embed)
         return probs,value
     def probs(self,x):
         state_embed=self.get_state_embed(x)
         return self.actor(state_embed)
     def values(self,x):
         state_embed=self.get_state_embed(x)
-        return self.value(state_embed)
+        return self.critic(state_embed)
